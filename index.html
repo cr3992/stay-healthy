@@ -12,17 +12,17 @@
 
 <body>
     <!--Header Start-->
-    <nav class="text-center shadow navbar navbar-light navbar-expand-md fixed-top" style="font-weight: bold;background: #73325c;color: #f9ebcd;">
+    <nav class="text-center shadow navbar navbar-light navbar-expand-md fixed-top" id="header" style="font-weight: bold;background: #73325c;color: #f9ebcd;">
         <div class="container-fluid"><a class="navbar-brand" href="index.html" style="color: #f9ebcd;"><img src="assets/img/logo.gif" alt="Animated GIF" class="img-fluid" width="40px;" >StayHealthy</a>
             <a class="btn" id="change-bg" type="search" href="search.html"><span class="material-symbols-outlined">search</span></a>
             <a class="btn" id="change-bg" type="button" href="notifications.html"><span class="material-symbols-outlined">notifications</span></a>
         </div>
-        <div class="container-fluid">
-            <div class="col-6 rounded" id="home_div" style="border-bottom: solid 3px #f9ebcd;">
-                <button class="btn" id="customButton" type="button" style="color: #f9ebcd;" onclick="home()">Home</button>
+        <div class="container-fluid" id="tabpane">
+            <div class="col-6 rounded" id="subheading_div" style="border-bottom: solid 3px #f9ebcd;">
+                <button class="btn" id="customButton" type="button" style="color: #f9ebcd;" onclick="subheading('')"></button>
             </div>
             <div class="col-6 rounded" id="article_div">
-                <button class="btn" id="customButton" type="button" style="color: #f9ebcd;" onclick="article()">Articles</button>
+                <button class="btn" id="customButton" type="button" style="color: #f9ebcd;" onclick="article()">Blogs & Articles</button>
             </div>
         </div>
     </nav>
@@ -30,21 +30,21 @@
 
 
     <!--Article Section-->
-    <div class="ratio ratio-16x9 d-none" id="disp-articles">
-        <iframe src="articles.html" title="" allowfullscreen></iframe>
+    <div class="ratio ratio-16x9" id="disp-content">
+        <iframe src="" id="dispframe" title="" allowfullscreen></iframe>
     </div>
 
 
 
 
     <!--Footer Start-->
-    <nav class="navbar navbar-light navbar-expand-md fixed-bottom" style="color: #f9ebcd;background: #73325c;">
+    <nav class="navbar navbar-light navbar-expand-md fixed-bottom" id="footer" style="color: #f9ebcd;background: #73325c;">
         <div class="container-fluid">
-            <a class="btn" id="change-bg" type="button" href="index.html" style="border-top:solid 3px #f9ebcd;"><span class="material-symbols-outlined">home</span></a>
-            <a class="btn" id="change-bg" type="button" href="bodypart.html"><span class="material-symbols-outlined"><span class="material-symbols-outlined">body_system</span></span></a>
-            <a class="btn" id="change-bg" type="button" href="nutrition.html"><span class="material-symbols-outlined">nutrition</span></a>
-            <a class="btn" id="change-bg" type="button" href="exercise.html"><span class="material-symbols-outlined">exercise</span></a>
-            <a class="btn" id="change-bg" type="button" href="menu.html"><span class="material-symbols-outlined">menu</span></a>
+            <button class="btn change-bg" id="home" type="button" onclick="btnClick('home')"><span class="material-symbols-outlined">home</span></button >
+            <button class="btn change-bg" id="diseases" type="button" onclick="btnClick('diseases')"><span class="material-symbols-outlined"><span class="material-symbols-outlined">coronavirus</span></span></button>
+            <button class="btn change-bg" id="nutrition" type="button" onclick="btnClick('nutrition')"><span class="material-symbols-outlined">nutrition</span></button >
+            <button class="btn change-bg" id="exercise" type="button" onclick="btnClick('exercise')"><span class="material-symbols-outlined">exercise</span></button >
+            <button class="btn change-bg" id="menu" type="button" onclick="btnClick('menu')"><span class="material-symbols-outlined">menu</span></button>
         </div>
     </nav>
     <!--Footer End-->
@@ -55,18 +55,70 @@
 
     
     <script>
-        var home_div = document.getElementById("home_div");
+        var dispframe = document.getElementById('dispframe');
+        var subheadingBtn = document.getElementById('customButton');
+        var subheading_div = document.getElementById("subheading_div");
         var article_div = document.getElementById("article_div");
-        var disp_articles = document.getElementById("disp-articles");
-        function home(){
+        var disp_content = document.getElementById("disp-content");
+        var homeBtn = document.getElementById("home");
+        var diseasesBtn = document.getElementById("diseases");
+        var nutritionBtn = document.getElementById("nutrition");
+        var exerciseBtn = document.getElementById("exercise");
+        var menuBtn = document.getElementById("menu");
+        var tabpane = document.getElementById("tabpane");
+        var subBtnName='';
+        if(subheadingBtn.textContent==''){
+            btnClick('home');
+        }else{
+            alert(subheadingBtn.textContent);
+        }
+        
+        function subheading(name){
+            if(name==''){
+                name = subBtnName;
+            }else{
+                subBtnName=name;
+            }
+            subheadingBtn.textContent = capitalize(name);
             article_div.style.border = "none";
-            home_div.style.borderBottom = "solid 3px #f9ebcd";
-            disp_articles.classList.add("d-none");
+            subheading_div.style.borderBottom = "solid 3px #f9ebcd";
+            disp_content.classList.add("d-none");
+            content(name)
         }
         function article(){
-            home_div.style.border = "none";
+            subheading_div.style.border = "none";
             article_div.style.borderBottom = "solid 3px #f9ebcd";
-            disp_articles.classList.remove("d-none");
+            dispframe.setAttribute("src","articles.html");
+            disp_content.classList.remove("d-none");
+        }
+        function content(filename){
+            dispframe.setAttribute("src",filename+".html");
+            disp_content.classList.remove("d-none");
+        }
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+          }
+        function btnClick(name){ 
+            homeBtn.style.borderTop = "none";
+            diseasesBtn.style.borderTop = "none";
+            nutritionBtn.style.borderTop = "none";
+            exerciseBtn.style.borderTop = "none";
+            menuBtn.style.borderTop = "none";
+            tabpane.classList.remove("d-none");
+            if(name=='home'){
+                homeBtn.style.borderTop = "solid 3px #f9ebcd";
+            }else if(name=='diseases'){
+                diseasesBtn.style.borderTop = "solid 3px #f9ebcd";
+            }else if(name=='nutrition'){
+                nutritionBtn.style.borderTop = "solid 3px #f9ebcd";
+            }else if(name=='exercise'){
+                exerciseBtn.style.borderTop = "solid 3px #f9ebcd";
+            }else if(name=='menu'){
+                menuBtn.style.borderTop = "solid 3px #f9ebcd";
+                tabpane.classList.add("d-none");
+            }
+            subheading(name);
+            content(name);
         }
     </script>
 </body>

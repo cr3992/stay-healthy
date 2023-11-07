@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>notifications</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<style>
+    body {
+        background-color: #f9ebcd;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-calculate {
+        background-color: #73325c;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-calculate:hover {
+        background-color: #562447;
+    }
+    .bmi-indicator {
+        padding: 10px;
+        color: #fff;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .bmi-underweight {
+        background-color: #ffcc00;
+    }
+
+    .bmi-normal {
+        background-color: #2ecc71;
+    }
+
+    .bmi-overweight {
+        background-color: #f39c12;
+    }
+
+    .bmi-obese {
+        background-color: #e74c3c;
+    }
+</style>
+<body style="overflow-y:auto;">
+
+    <div class="container mt-5 pt-2 rounded shadow" id="articleContainer">
+        <div class="container text-center" id="fg">
+            <h3 class="mb-2">BMI Calculator</h3>
+            <form id="bmiForm">
+                <div class="mb-3">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" class="form-control" id="weight" required>
+                </div>
+                <div class="mb-3">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" class="form-control" id="height" required>
+                </div>
+                <button type="button" class="btn btn-calculate" onclick="calculateBMI()">Calculate BMI</button>
+            </form>
+            <div id="result" class="mt-4"></div>
+            <div id="bmiIndicator" class="bmi-indicator mt-4"></div>
+        </div>
+    </div>
+
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert height to meters
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                document.getElementById('result').innerHTML = '<p>Please enter valid weight and height.</p>';
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            const category = getBMICategory(bmi);
+            const result = `Your BMI: ${bmi.toFixed(2)} (${category})`;
+
+            document.getElementById('result').innerHTML = result;
+            updateBMIIndicator(category);
+        }
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return 'Underweight';
+            if (bmi < 24.9) return 'Normal weight';
+            if (bmi < 29.9) return 'Overweight';
+            return 'Obese';
+        }
+        function updateBMIIndicator(category) {
+            const indicator = document.getElementById('bmiIndicator');
+            indicator.textContent = `BMI Category: ${category}`;
+            indicator.className = 'bmi-indicator mt-4 bmi-' + category.toLowerCase();
+        }
+    </script>
+    
+</body>
+
+</html>

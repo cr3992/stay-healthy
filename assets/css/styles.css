@@ -5,7 +5,7 @@
   background: #73325c;
   color: #f9ebcd;border:none;
 }
-#change-bg:active, #change-bg:hover{
+.change-bg:active, .change-bg:hover{
   color: #73325c;
   background-color: #f9ebcd;
   border: none;
@@ -14,16 +14,25 @@
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 0px rgba(255, 100, 255, 0.5);
   border-color:none;
 }
-#disp-articles{
+#disp-content{
   --bs-aspect-ratio: 150%;
-  margin-top:105px;
-  margin-bottom:105px;
-  height:600px;
-  overflow:auto;
+  margin-top: 80px; /* Adjust the top navbar height */
+  margin-bottom: 60px; /* Adjust the bottom navbar height */
+  padding: 15px; /* Add padding for content spacing */
+  height: calc(100vh - 140px); /* Calculate the content area height to fit between navbars */
+  overflow: hidden;
 }
 a{
   text-decoration: none;
 }
 #fg{
   color: #73325c;
+}
+body{
+  overflow: hidden;
+  background-color: #f9ebcd;
+}
+.articleContainer{
+  background-color: #ffffff;
+  color:#73325c;
 }

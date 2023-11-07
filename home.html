@@ -22,7 +22,7 @@
 
     // AJAX request to fetch article headings
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'assets/textFiles/index/exercise_index.txt', true);
+    xhr.open('GET', 'assets/textFiles/index/home_index.txt', true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const lines = xhr.responseText.split('\n');

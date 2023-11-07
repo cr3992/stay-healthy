@@ -4,20 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Articles</title>
+    <title>Blogs & Articles</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body>
+<body style="overflow-y:auto;">
     <div class="container mt-5" id="articleContainer">
     </div>
 
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
     const articleContainer = document.getElementById('articleContainer');
 
     // AJAX request to fetch article headings
@@ -37,26 +37,51 @@
     xhr.send();
 
     // Function to create a card element for each article heading
-    function createArticleCard(heading) {
-        const card = document.createElement('div');
-        card.className = 'col-md-4 mb-4';
-
-        const cardInner = document.createElement('div');
-        cardInner.className = 'card shadow rounded';
-
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body';
-
-        const cardTitle = document.createElement('h5');
-        cardTitle.className = 'card-title';
-        cardTitle.textContent = heading;
-
-        cardBody.appendChild(cardTitle);
-        cardInner.appendChild(cardBody);
-        card.appendChild(cardInner);
-
-        return card;
+    function createArticleCard(heading, link) {
+        const cardLink = document.createElement('a');
+        cardLink.href = link;
+    
+        const cardRow = document.createElement('div');
+        cardRow.className = 'row border-bottom py-2 shadow mb-2 rounded-5 mx-2';
+        cardRow.style.backgroundColor = "#f4f3ee";
+        cardRow.style.color = "#73325c"
+    
+        const symbolDiv = document.createElement('div');
+        symbolDiv.className = 'col-2 text-end';
+    
+        const symbolSpan = document.createElement('span');
+        symbolSpan.className = 'material-symbols-outlined';
+        symbolSpan.textContent = 'newspaper';
+    
+        symbolDiv.appendChild(symbolSpan);
+    
+        const headingDiv = document.createElement('div');
+        headingDiv.className = 'col-8';
+    
+        const headingSpan = document.createElement('span');
+        headingSpan.textContent = heading;
+    
+        headingDiv.appendChild(headingSpan);
+    
+        const chevronDiv = document.createElement('div');
+        chevronDiv.className = 'col-2 text-end';
+    
+        const chevronSpan = document.createElement('span');
+        chevronSpan.className = 'material-symbols-outlined';
+        chevronSpan.textContent = 'chevron_right';
+    
+        chevronDiv.appendChild(chevronSpan);
+    
+        cardRow.appendChild(symbolDiv);
+        cardRow.appendChild(headingDiv);
+        cardRow.appendChild(chevronDiv);
+    
+        cardLink.appendChild(cardRow);
+    
+        return cardLink;
     }
+    
+    
 });
 
     </script>
