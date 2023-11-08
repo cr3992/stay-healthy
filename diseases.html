@@ -17,49 +17,68 @@
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const articleContainer = document.getElementById('articleContainer');
-
-    // AJAX request to fetch article headings
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'assets/textFiles/index/diseases_index.txt', true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const lines = xhr.responseText.split('\n');
-            lines.forEach(function (line) {
-                if (line.trim() !== '') {
-                    const articleCard = createArticleCard(line);
-                    articleContainer.appendChild(articleCard);
-                }
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+        const articleContainer = document.getElementById('articleContainer');
+    
+        // AJAX request to fetch article headings
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'assets/textFiles/index/diseases_index.txt', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const lines = xhr.responseText.split('\n');
+                lines.forEach(function (line) {
+                    if (line.trim() !== '') {
+                        const parts = line.split('|'); // Split by a delimiter, e.g., '|'
+                        const heading = parts[1];     // need to write the article number|heading|pagelocation
+                        const contentfile = parts[2]; // filename of content of article 
+        
+                        const articleCard = createArticleCard(heading, contentfile);
+                        articleContainer.appendChild(articleCard);
+                    }
+                });
+            }
+        };
+        xhr.send();
+    
+        // Function to create a card element for each article heading
+        function createArticleCard(heading,contentfile) {
+            const cardLink = document.createElement('a');
+            cardLink.href = 'display.html?heading=' + encodeURIComponent(heading) + '&contentfile=' + encodeURIComponent(contentfile);
+            cardLink.target = "_top";
+        
+            const cardRow = document.createElement('div');
+            cardRow.className = 'row border-bottom py-2 shadow mb-2 rounded-2 mx-2';
+            cardRow.style.backgroundColor = "#ffffff";
+            cardRow.style.color = "#73325c"
+            cardRow.style.height = "100px";
+        
+            const symbolDiv = document.createElement('div');
+            symbolDiv.className = 'col-2 text-end';
+        
+            /*const symbolSpan = document.createElement('span');
+            symbolSpan.className = 'material-symbols-outlined';
+            symbolSpan.textContent = 'newspaper';*/
+        
+            //symbolDiv.appendChild(symbolSpan);
+        
+            const headingDiv = document.createElement('div');
+            headingDiv.className = 'col-8';
+        
+            const headingSpan = document.createElement('span');
+            headingSpan.textContent = heading;
+        
+            headingDiv.appendChild(headingSpan);
+    
+        
+            //cardRow.appendChild(symbolDiv);
+            cardRow.appendChild(headingDiv);
+            cardLink.appendChild(cardRow);
+        
+            return cardLink;
         }
-    };
-    xhr.send();
-
-    // Function to create a card element for each article heading
-    function createArticleCard(heading) {
-        const card = document.createElement('div');
-        card.className = 'col-md-4 mb-4';
-
-        const cardInner = document.createElement('div');
-        cardInner.className = 'card shadow rounded-5 articleContainer';
-
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body';
-
-        const cardTitle = document.createElement('p');
-        cardTitle.className = 'card-title';
-        cardTitle.textContent = heading;
-
-        cardBody.appendChild(cardTitle);
-        cardInner.appendChild(cardBody);
-        card.appendChild(cardInner);
-
-        return card;
-    }
-});
-
-    </script>
+    });
+    
+        </script>
 </body>
 
 </html>

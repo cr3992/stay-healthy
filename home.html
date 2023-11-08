@@ -11,21 +11,22 @@
 </head>
 
 <body style="overflow-y:auto;">
-    <div class="container mt-5" id="articleContainer">
-        <div class="row mb-5 justify-content-center">
-            <div class="=col-3 border bg-light rounded-circle shadow mx-3 mt-3" style="width: 60px;height:60px;">
-                <a href=""></a>
-            </div>
-            <div class="=col-3 border bg-light rounded-circle shadow mx-3 mt-3" style="width: 60px;height:60px;">
-                <a href=""></a>
-            </div>
-            <div class="=col-3 border bg-light rounded-circle shadow mx-3 mt-3" style="width: 60px;height:60px;">
-                <a href=""></a>
-            </div>
-            <div class="=col-3 border bg-light rounded-circle shadow mx-3 mt-3" style="width: 60px;height:60px;">
-                <a href=""></a>
-            </div>
-        </div>
+    <div class="container mt-5">
+       <div class="row text-center mx-2">
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+       </div>
+       <div class="row text-center mt-3 mx-2">
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+            <div class="col-3 "><a href="" ><div class="col-3 border bg-light rounded-circle shadow" style="width: 60px;height:60px;"></div></a></div>
+       </div>
+       <div class="mt-5" id="articleContainer">
+
+       </div>
     </div>
 
 
@@ -61,9 +62,10 @@
         cardLink.target = "_top";
     
         const cardRow = document.createElement('div');
-        cardRow.className = 'row border-bottom py-2 shadow mb-2 rounded-5 mx-2';
+        cardRow.className = 'row border-bottom py-2 shadow mb-2 rounded-2 mx-2';
         cardRow.style.backgroundColor = "#ffffff";
         cardRow.style.color = "#73325c"
+        cardRow.style.height = "100px";
     
         const symbolDiv = document.createElement('div');
         symbolDiv.className = 'col-2 text-end';

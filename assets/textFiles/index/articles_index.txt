@@ -1,1 +1,2 @@
+article2|Health consciousness|articles/article2
 article1|Stay Healthy by Choosing Homemade Meals Over Fast Food|articles/article1
