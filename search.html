@@ -90,7 +90,6 @@
         
         function search(){
             var query = document.getElementById('searchInput').value;
-alert(query);
             if(query!==''){
                 const results = search_data.filter(item => item.heading.toLowerCase().includes(query));
                 results.forEach(result => {
