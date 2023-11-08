@@ -1,0 +1,5 @@
+articles_index
+diseases_index
+exercise_index
+home_index
+nutrition_index

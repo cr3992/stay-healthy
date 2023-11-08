@@ -28,7 +28,11 @@
             const lines = xhr.responseText.split('\n');
             lines.forEach(function (line) {
                 if (line.trim() !== '') {
-                    const articleCard = createArticleCard(line);
+                    const parts = line.split('|'); // Split by a delimiter, e.g., '|'
+                    const heading = parts[1];     // need to write the article number|heading|pagelocation
+                    const contentfile = parts[2]; // filename of content of article 
+    
+                    const articleCard = createArticleCard(heading, contentfile);
                     articleContainer.appendChild(articleCard);
                 }
             });
@@ -37,13 +41,14 @@
     xhr.send();
 
     // Function to create a card element for each article heading
-    function createArticleCard(heading, link) {
+    function createArticleCard(heading,contentfile) {
         const cardLink = document.createElement('a');
-        cardLink.href = link;
+        cardLink.href = 'display.html?heading=' + encodeURIComponent(heading) + '&contentfile=' + encodeURIComponent(contentfile);
+        cardLink.target = "_top";
     
         const cardRow = document.createElement('div');
         cardRow.className = 'row border-bottom py-2 shadow mb-2 rounded-5 mx-2';
-        cardRow.style.backgroundColor = "#f4f3ee";
+        cardRow.style.backgroundColor = "#ffffff";
         cardRow.style.color = "#73325c"
     
         const symbolDiv = document.createElement('div');
@@ -62,20 +67,10 @@
         headingSpan.textContent = heading;
     
         headingDiv.appendChild(headingSpan);
-    
-        const chevronDiv = document.createElement('div');
-        chevronDiv.className = 'col-2 text-end';
-    
-        const chevronSpan = document.createElement('span');
-        chevronSpan.className = 'material-symbols-outlined';
-        chevronSpan.textContent = 'chevron_right';
-    
-        chevronDiv.appendChild(chevronSpan);
+
     
         cardRow.appendChild(symbolDiv);
         cardRow.appendChild(headingDiv);
-        cardRow.appendChild(chevronDiv);
-    
         cardLink.appendChild(cardRow);
     
         return cardLink;
