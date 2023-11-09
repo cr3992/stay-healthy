@@ -80,7 +80,7 @@
         const articleContainer = document.getElementById('articleContainer');
         document.getElementById('searchInput').focus();
         function search(){
-            var query = document.getElementById('searchInput').value;
+            var query = document.getElementById('searchInput').value.toLowerCase();
             if(query!==''){
                 const results = search_data.filter(item => item.heading.toLowerCase().includes(query));
                 articleContainer.innerHTML = '';
