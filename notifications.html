@@ -15,6 +15,7 @@
     <nav class="text-center shadow navbar navbar-light navbar-expand-md fixed-top" style="font-weight: bold;background: #73325c;color: #f9ebcd;">
         <div class="input-group mx-2">
             <a class="btn px-4" type="button" id="button-addon2" href="index.html"  style="background-color:#73325c;color:#f9ebcd;"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+            <span class="material-symbols-outlined mt-1 px-2 ">notifications</span> 
             <label for="" style="font-size:20px;font-weight:normal;">Notifications</label>
         </div>
     </nav>
@@ -29,7 +30,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const articleContainer = document.getElementById('articleContainer');
-
+        
             // AJAX request to fetch article headings
             const xhr = new XMLHttpRequest();
             xhr.open('GET', 'assets/textFiles/index/notification_index.txt', true);
@@ -38,35 +39,99 @@
                     const lines = xhr.responseText.split('\n');
                     lines.forEach(function (line) {
                         if (line.trim() !== '') {
-                            const articleCard = createArticleCard(line);
-                            articleContainer.appendChild(articleCard);
+                            const parts = line.split('|'); // Split by a delimiter, e.g., '|'
+                            const date = parts[1];
+                            const heading = parts[2];     // need to write the article number|heading|pagelocation
+                            const contentfile = parts[3]; // filename of content of article 
+            
+                            const articleCard = createArticleCard(date,heading, contentfile);
+                            if(articleCard){
+                                articleContainer.appendChild(articleCard);
+                            }
                         }
                     });
                 }
             };
             xhr.send();
+        
+            // Function to create a card element for each article heading
+            function createArticleCard(date,heading,contentfile) {
+                const cardLink = document.createElement('a');
+                cardLink.href = 'display.html?heading=' + encodeURIComponent(heading) + '&contentfile=' + encodeURIComponent(contentfile);
+                cardLink.target = "_top";
+            
+                const cardRow = document.createElement('div');
+                cardRow.className = 'row border-bottom py-2 bg-light shadow rounded-2 mt-1 mx-2';
+                //cardRow.style.backgroundColor = "#ffffff";
+                cardRow.style.color = "#73325c"
+                cardRow.style.height = "90px";
 
-            function createArticleCard(heading) {
-                const card = document.createElement('div');
-                card.className = 'col-md-4 mb-4';
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'col-1 text-start';
+            
+                const dateSpan = document.createElement('span');
+                dateSpan.className = 'badge bg-light text-muted text-start';
+                dateSpan.textContent = date;
+                dateSpan.style.fontSize = "10px";
+            
+                dateDiv.appendChild(dateSpan);
+            
+                const symbolDiv = document.createElement('div');
+                symbolDiv.className = 'col-2 text-end';
+            
+                const symbolSpan = document.createElement('span');
+                symbolSpan.className = 'material-symbols-outlined mt-1';
+                symbolSpan.textContent = 'new_releases';
+            
+                symbolDiv.appendChild(symbolSpan);
+            
+                const headingDiv = document.createElement('div');
+                headingDiv.className = 'col-10';
+            
+                const headingSpan = document.createElement('span');
+                headingSpan.textContent = heading;
+            
+                headingDiv.appendChild(headingSpan);
 
-                const cardInner = document.createElement('div');
-                cardInner.className = 'card shadow rounded articleContainer';
-
-                const cardBody = document.createElement('div');
-                cardBody.className = 'card-body';
-
-                const cardTitle = document.createElement('p');
-                cardTitle.className = 'card-title';
-                cardTitle.textContent = heading;
-
-                cardBody.appendChild(cardTitle);
-                cardInner.appendChild(cardBody);
-                card.appendChild(cardInner);
-
-                return card;
+                cardRow.appendChild(dateSpan);
+                cardRow.appendChild(symbolDiv);
+                cardRow.appendChild(headingDiv);
+                cardLink.appendChild(cardRow);
+            
+                if(isDateInPreviousWeek(date)){
+                    return cardLink;
+                }else{
+                    return false;
+                }
             }
-    });
+        });
+
+        function isDateInPreviousWeek(targetDate) {
+            if(targetDate.charAt(0)=='0'){
+                targetDate = targetDate.slice(1);
+            }
+            const currentDate = new Date();
+            
+            for (let i = 6; i >= 0; i--) {
+                const previousDate = new Date(currentDate);
+                previousDate.setDate(currentDate.getDate() - i);
+        
+                const day = previousDate.getDate();
+                const month = previousDate.getMonth() + 1; // Months are zero-based
+                const year = previousDate.getFullYear();
+        
+                const formattedDate = `${day}/${month}/${year}`;
+                if (formattedDate === targetDate) {
+                    return true;
+                }
+            }
+        
+            return false;
+        }
+        
+       
+        
+        
     </script>
 </body>
 

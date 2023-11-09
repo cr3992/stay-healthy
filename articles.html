@@ -42,6 +42,7 @@
 
     // Function to create a card element for each article heading
     function createArticleCard(heading,contentfile) {
+
         const cardLink = document.createElement('a');
         cardLink.href = 'display.html?heading=' + encodeURIComponent(heading) + '&contentfile=' + encodeURIComponent(contentfile);
         cardLink.target = "_top";
@@ -50,7 +51,7 @@
         cardRow.className = 'row border-bottom py-2 shadow bg-light bg-gradient mb-2 rounded-2 mx-2';
         cardRow.style.backgroundColor = "#ffffff";
         cardRow.style.color = "#73325c"
-        cardRow.style.height = "100px";
+        cardRow.style.height = "60px";
     
         const symbolDiv = document.createElement('div');
         symbolDiv.className = 'col-2 text-end';
@@ -61,8 +62,15 @@
     
         symbolDiv.appendChild(symbolSpan);
     
-        const headingDiv = document.createElement('div');
+        const headingDiv = document.createElement('marquee');
         headingDiv.className = 'col-10';
+        if(heading.length < 30){
+            headingDiv.setAttribute("behavior", "slide");
+        }else{
+            headingDiv.setAttribute("behavior", "left");
+        }
+        headingDiv.setAttribute("scrolldelay", "10");
+        headingDiv.setAttribute("width", "10%");
     
         const headingSpan = document.createElement('p');
         headingSpan.textContent = heading;
