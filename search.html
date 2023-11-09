@@ -93,7 +93,7 @@
         }
 
         function createArticleCard(heading,link) {
-            alert(query);
+            alert("Heading: "+heading+"\n"+"Link: "+link);
             const cardLink = document.createElement('a');
             cardLink.href = 'display.html?heading=' + encodeURIComponent(heading) + '&contentfile=' + encodeURIComponent(link);
             cardLink.target = "_top";
