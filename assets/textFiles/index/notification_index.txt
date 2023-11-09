@@ -1,2 +1,2 @@
-notification1|9/11/2023|Article: Health consciousness|articles/article2
-notification1|6/11/2023|Article: Stay Healthy by Choosing Homemade Meals Over Fast Food|articles/article2
+notification1|9/11/2023|Health consciousness|articles/article2
+notification1|6/11/2023|Stay Healthy by Choosing Homemade Meals Over Fast Food|articles/article2
