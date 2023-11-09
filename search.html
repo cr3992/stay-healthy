@@ -79,7 +79,7 @@
         
         const articleContainer = document.getElementById('articleContainer');
         function search(){
-            var query = document.getElementById('searchInput').value;
+            var query = document.getElementById('searchInput').value.toLowerCase();
             if(query!=''){
                 const results = search_data.filter(item => item.heading.toLowerCase().includes(query));
                 articleContainer.innerHTML = '';
@@ -93,7 +93,6 @@
         }
 
         function createArticleCard(heading,link) {
-            alert("Heading: "+heading+"\n"+"Link: "+link);
             const cardLink = document.createElement('a');
             cardLink.href = 'display.html?heading=' + encodeURIComponent(heading) + '&contentfile=' + encodeURIComponent(link);
             cardLink.target = "_top";
