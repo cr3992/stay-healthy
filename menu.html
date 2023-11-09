@@ -80,7 +80,7 @@
                 </div>
             </div>
         </a>
-        <a href="">
+        <a id="shareBtn">
             <div class="row  border-bottom border-light py-2">
                 <div class="col-2">
                     <span class="material-symbols-outlined" id="fg">share</span>
@@ -122,6 +122,26 @@
         function article(){
             document.getElementById("home_div").style.border = "none";
             document.getElementById("article_div").style.borderBottom = "solid 3px #f9ebcd";
+        }
+
+        const shareBtn = document.getElementById('shareBtn');
+        if (navigator.share) {
+        shareBtn.addEventListener('click', () => {
+            navigator.share({
+            title: 'Share',
+            text: 'Stay Healthy',
+            url: 'https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing'
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        });
+        } else {
+        // Fallback for browsers that do not support Web Share API
+        shareBtn.addEventListener('click', () => {
+            const shareUrl = 'https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing';
+            // You can implement your own logic here, like opening a modal with the link for users to copy
+            
+        });
         }
     </script>
 </body>
