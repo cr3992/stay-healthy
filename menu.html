@@ -80,7 +80,7 @@
                 </div>
             </div>
         </a>
-        <a onclick="shareUrl()" target='_top'>
+        <a onclick="copyToClipboard()">
             <div class="row  border-bottom border-light py-2">
                 <div class="col-2">
                     <span class="material-symbols-outlined" id="fg">share</span>
@@ -125,22 +125,42 @@
         }
 
         function shareUrl() {
-            alert('https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing');
-        if (navigator.share) {
-            navigator.share({
-            title: 'Share',
-            text: 'Stay Healthy',
-            url: 'https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing'
-            })
-            .then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
-        } else {
+            if (navigator.share) {
+                navigator.share({
+                title: 'Share',
+                text: 'Stay Healthy',
+                url: 'https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing'
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
         // Fallback for browsers that do not support Web Share API
-            const shareUrl = 'https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing';
+                const shareUrl = 'https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing';
             // You can implement your own logic here, like opening a modal with the link for users to copy
+            }
+        }
+
+        function copyToClipboard() {
+            const textToCopy = "https://drive.google.com/file/d/17UbohEEyxEiQjLJzO8ntepeOPf1hQtb7/view?usp=sharing";
             
-       }
-    }
+            // Create a temporary textarea element to hold the text
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            
+            // Select the text in the textarea
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); /* For mobile devices */
+            
+            // Copy the selected text to the clipboard
+            document.execCommand('copy');
+            
+            // Remove the temporary textarea
+            document.body.removeChild(textarea);
+      
+            // Provide some visual feedback (you can customize this part)
+            alert('App Link has been copied!');
+          }
     </script>
 </body>
 
