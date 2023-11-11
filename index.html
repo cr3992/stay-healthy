@@ -109,33 +109,33 @@
           }
         function btnClick(name){ 
             
-            homeBtn.style.backgroundColor = "#73325c";
-            homeBtn.style.color = "#f9ebcd";
-            diseasesBtn.style.backgroundColor = "#73325c";
-            diseasesBtn.style.color = "#f9ebcd";
-            nutritionBtn.style.backgroundColor = "#73325c";
-            nutritionBtn.style.color = "#f9ebcd";
-            exerciseBtn.style.backgroundColor = "#73325c";
-            exerciseBtn.style.color = "#f9ebcd";
-            menuBtn.style.backgroundColor = "#73325c";
-            menuBtn.style.color = "#f9ebcd";
+            homeBtn.style.borderTop = "none";
+            diseasesBtn.style.borderTop = "none";
+            nutritionBtn.style.borderTop = "none";
+            exerciseBtn.style.borderTop = "none";
+            menuBtn.style.borderTop = "none";
+            homeBtn.style.color="#f9ebcd";
+            diseasesBtn.style.color="#f9ebcd";
+            nutritionBtn.style.color="#f9ebcd";
+            exerciseBtn.style.color="#f9ebcd";
+            menuBtn.style.color="#f9ebcd";
 
             tabpane.classList.remove("d-none");
             if(name=='home'){
-                homeBtn.style.backgroundColor = "#f9ebcd";
-                homeBtn.style.color = "#73325c";
+                homeBtn.style.borderTop = "solid 3px #fadea2";
+                homeBtn.style.color="#fadea2";
             }else if(name=='diseases'){
-                diseasesBtn.style.backgroundColor = "#f9ebcd";
-                diseasesBtn.style.color = "#73325c";
+                diseasesBtn.style.borderTop = "solid 3px #fadea2";
+                diseasesBtn.style.color="#fadea2";
             }else if(name=='nutrition'){
-                nutritionBtn.style.backgroundColor = "#f9ebcd";
-                nutritionBtn.style.color = "#73325c";
+                nutritionBtn.style.borderTop = "solid 3px #fadea2";
+                nutritionBtn.style.color="#fadea2";
             }else if(name=='exercise'){
-                exerciseBtn.style.backgroundColor = "#f9ebcd";
-                exerciseBtn.style.color = "#73325c";
+                exerciseBtn.style.borderTop = "solid 3px #fadea2";
+                exerciseBtn.style.color="#fadea2";
             }else if(name=='menu'){
-                menuBtn.style.backgroundColor = "#f9ebcd";
-                menuBtn.style.color = "#73325c";
+                menuBtn.style.borderTop = "solid 3px #fadea2";
+                menuBtn.style.color="#fadea2";
                 tabpane.classList.add("d-none");
             }
             subheading(name);
