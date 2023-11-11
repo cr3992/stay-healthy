@@ -15,12 +15,6 @@
         background-color: #f9ebcd;
     }
 
-    .container {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 20px;
-    }
 
     .btn-calculate {
         background-color: #73325c;
@@ -37,7 +31,17 @@
         border-radius: 10px;
         text-align: center;
     }
-
+    #container{
+        margin-top: 25%;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 20%;
+        padding-bottom: 15%;
+        padding-left: 10%;
+        padding-right: 10%;
+        color:#73325c;
+        background-color: #ffffff;
+    }
     .bmi-underweight {
         background-color: #ffcc00;
     }
@@ -56,13 +60,22 @@
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
+    label{
+        font-weight: bold;
+    }
 </style>
 <body style="overflow-y:auto;">
 
-    <div class="container mt-5 pt-2 rounded shadow" id="articleContainer">
-        <div class="container text-center" id="fg">
-            <h3 class="mb-2">BMI Calculator</h3>
-            <form id="bmiForm">
+    <nav class="text-center shadow navbar navbar-light navbar-expand-md fixed-top" style="font-weight: bold;background: #73325c;color: #f9ebcd;">
+        <div class="input-group mx-2">
+            <a class="btn px-4" type="button" id="button-addon2" href="index.html"  style="background-color:#73325c;color:#f9ebcd;"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+            <span class="material-symbols-outlined mt-1 px-2 rotateIn animated" onclick="window.location.reload();">calculate</span> 
+            <label for="" style="font-size:20px;font-weight:normal;" class="slideInRight animated" onclick="window.location.reload();">BMI Calculator</label>
+        </div>
+    </nav>
+
+    <div class="row rounded-4 shadow" id="container">
+            <form id="bmiForm" class="zoomIn animated">
                 <div class="mb-3">
                     <label for="weight">Weight (kg)</label>
                     <input type="number" class="form-control" id="weight" required>
@@ -71,11 +84,10 @@
                     <label for="height">Height (cm)</label>
                     <input type="number" class="form-control" id="height" required>
                 </div>
-                <button type="button" class="btn btn-calculate" onclick="calculateBMI()">Calculate BMI</button>
+                <div class="col- text-center mt-5"><button type="button" class="btn btn-calculate" onclick="calculateBMI()">Calculate BMI</button></div>
             </form>
             <div id="result" class="mt-4"></div>
             <div id="bmiIndicator" class="bmi-indicator mt-4"></div>
-        </div>
     </div>
 
 
@@ -109,6 +121,11 @@
             const indicator = document.getElementById('bmiIndicator');
             indicator.textContent = `BMI Category: ${category}`;
             indicator.className = 'bmi-indicator mt-4 bmi-' + category.toLowerCase();
+        }
+
+        function btnAnimate(){
+            const btn = document.querySelector(".btn-calculate");
+            btn.classList.add("shake", "animated");
         }
     </script>
     

@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .btn:hover{
+            background-color: #d60a8f;
+            color:#f9ebcd;
+        }
+    </style>
 </head>
 
 <body style="overflow-y:auto;">
@@ -22,7 +28,7 @@
 
 
     <div class="container mt-5 pt-5">
-        <div class="row bg-light rounded-2 shadow m-2 p-4" id="fg" style="font-weight:bold;">
+        <div class="row bg-light rounded-2 m-2 p-4 shadow" id="fg" style="font-weight:bold;">
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){task();}"></iframe>
             <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeJSq515E5WajXMJ1ACgaSjUX2AbxPMMWTutaxTixUf2rFCEA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
                 <!-- Name Input -->
