@@ -1,1 +1,1 @@
-exercise1|Exercise|exercise/exercise1
+exercise1|Exercise|exercise/exercise1|robot.jpg

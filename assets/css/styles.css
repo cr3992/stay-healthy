@@ -3,8 +3,10 @@
 }
 .btn{
   background: #73325c;
-  color: #f9ebcd;border:none;
+  color: #f9ebcd;
+  border:none;
 }
+
 .change-bg:active{
   color: #73325c;
   background-color: #f9ebcd;

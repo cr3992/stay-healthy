@@ -1,1 +1,1 @@
-diseases1|Disease|disease/diseases1
+disease1|Anemia|diseases/disease1|disease1.jpg

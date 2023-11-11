@@ -13,6 +13,9 @@
         #disp-content{
             display: none;
         }
+        .button-text{
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -46,11 +49,26 @@
     <!--Footer Start-->
     <nav class="navbar navbar-light navbar-expand-md fixed-bottom" id="footer" style="color: #f9ebcd;background: #73325c;">
         <div class="container-fluid">
-            <button class="btn change-bg" id="home" type="button" onclick="btnClick('home')"><span class="material-symbols-outlined">home</span></button >
-            <button class="btn change-bg" id="diseases" type="button" onclick="btnClick('diseases')"><span class="material-symbols-outlined"><span class="material-symbols-outlined">coronavirus</span></span></button>
-            <button class="btn change-bg" id="nutrition" type="button" onclick="btnClick('nutrition')"><span class="material-symbols-outlined">nutrition</span></button >
-            <button class="btn change-bg" id="exercise" type="button" onclick="btnClick('exercise')"><span class="material-symbols-outlined">exercise</span></button >
-            <button class="btn change-bg" id="menu" type="button" onclick="btnClick('menu')"><span class="material-symbols-outlined">menu</span></button>
+            <button class="btn change-bg" id="home" type="button" onclick="btnClick('home')">
+                <span class="material-symbols-outlined">home</span>
+                <div class="button-text">Home</div>
+            </button >
+            <button class="btn change-bg" id="diseases" type="button" onclick="btnClick('diseases')">
+                <span class="material-symbols-outlined">coronavirus</span>
+                <div class="button-text">Diseases</div>
+            </button>
+            <button class="btn change-bg" id="nutrition" type="button" onclick="btnClick('nutrition')">
+                <span class="material-symbols-outlined">nutrition</span>
+                <div class="button-text">Nutritions</div>
+            </button >
+            <button class="btn change-bg" id="exercise" type="button" onclick="btnClick('exercise')">
+                <span class="material-symbols-outlined">exercise</span>
+                <div class="button-text">Exercise</div>
+            </button >
+            <button class="btn change-bg" id="menu" type="button" onclick="btnClick('menu')">
+                <span class="material-symbols-outlined">menu</span>
+                <div class="button-text">Menu</div>
+            </button>
         </div>
     </nav>
     <!--Footer End-->
@@ -95,6 +113,7 @@
             content(name)
         }
         function article(){
+            sessionStorage.setItem('subBtnName',subBtnName);
             subheading_div.style.border = "none";
             article_div.style.borderBottom = "solid 3px #f9ebcd";
             dispframe.setAttribute("src","articles.html");
@@ -108,7 +127,6 @@
             return str.charAt(0).toUpperCase() + str.slice(1);
           }
         function btnClick(name){ 
-            
             homeBtn.style.borderTop = "none";
             diseasesBtn.style.borderTop = "none";
             nutritionBtn.style.borderTop = "none";
