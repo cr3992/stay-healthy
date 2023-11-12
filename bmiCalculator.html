@@ -94,6 +94,8 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script>
+        const backBtn = document.getElementById('button-addon2');
+        backBtn.setAttribute("href", "index.html?fn="+sessionStorage.getItem('currentPage'));
         function calculateBMI() {
             const weight = parseFloat(document.getElementById('weight').value);
             const height = parseFloat(document.getElementById('height').value) / 100; // Convert height to meters

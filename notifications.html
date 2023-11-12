@@ -28,6 +28,8 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script>
+        const backBtn = document.getElementById('button-addon2');
+        backBtn.setAttribute("href", "index.html?fn="+sessionStorage.getItem('currentPage'));
         document.addEventListener('DOMContentLoaded', function () {
             const articleContainer = document.getElementById('articleContainer');
         

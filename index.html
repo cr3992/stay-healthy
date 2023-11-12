@@ -97,8 +97,15 @@
             alert(subheadingBtn.textContent);
         }
         
+        
         window.onload = function(){
             disp_content.style.display="block";
+            const urlParams = new URLSearchParams(window.location.search);
+            const fnName = urlParams.get('fn');
+            if(fnName){
+                btnClick(fnName);
+            }
+            
         }
         function subheading(name){
             if(name==''){
@@ -120,6 +127,7 @@
             disp_content.classList.remove("d-none");
         }
         function content(filename){
+            sessionStorage.setItem('currentPage',filename);
             dispframe.setAttribute("src",filename+".html");
             disp_content.classList.remove("d-none");
         }
@@ -137,7 +145,7 @@
             nutritionBtn.style.color="#f9ebcd";
             exerciseBtn.style.color="#f9ebcd";
             menuBtn.style.color="#f9ebcd";
-
+            
             tabpane.classList.remove("d-none");
             if(name=='home'){
                 homeBtn.style.borderTop = "solid 3px #fadea2";

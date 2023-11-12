@@ -1,2 +1,3 @@
-notification1|9/11/2023|Health consciousness|articles/article2
+notification3|12/11/2023|Anemia|diseases/disease1
+notification2|9/11/2023|Health consciousness|articles/article2
 notification1|6/11/2023|Stay Healthy by Choosing Homemade Meals Over Fast Food|articles/article2
